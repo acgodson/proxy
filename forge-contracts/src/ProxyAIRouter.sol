@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import "./wormhole-sdk/wormhole-solidity-sdk-0.1.0/src/WormholeRelayerSDK.sol";
-import "./wormhole-sdk/wormhole-solidity-sdk-0.1.0/src/interfaces/IERC20.sol";
+import "wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "wormhole-solidity-sdk/src//interfaces/IERC20.sol";
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Controller.sol";

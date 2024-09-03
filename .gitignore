@@ -10,3 +10,7 @@ smart-contracts/test
 smart-contracts/package-lock.json
 
 v0.1.0.zip
+
+forge-contracts/node_modules
+forge-contracts/cache
+forge-contracts/lib
