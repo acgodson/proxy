@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-contracts/contracts/access/Ownable.sol";
 
-contract TestUSDC is ERC20, Ownable(msg.sender) {
+contract TestUSDC is ERC20, Ownable {
     uint256 public constant DISPENSE_AMOUNT = 10_000 * 10 ** 18; // 10,000 tokens per demo contract
 
     constructor() ERC20("Simple Reward Token", "SRN") {
