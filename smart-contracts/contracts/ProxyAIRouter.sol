@@ -1,10 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
+import "./wormhole-sdk/wormhole-solidity-sdk-0.1.0/src/WormholeRelayerSDK.sol";
+import "./wormhole-sdk/wormhole-solidity-sdk-0.1.0/src/interfaces/IERC20.sol";
+
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Controller.sol";
 
 abstract contract ProxyAIRouter is Ownable(msg.sender) {
+    uint256 constant GAS_LIMIT = 250_000;
+
+    uint16 constant targetChain = 14;
     address public controller;
     address public tokenAddress;
 
@@ -14,7 +20,13 @@ abstract contract ProxyAIRouter is Ownable(msg.sender) {
         High
     }
 
-    constructor(address _controller, address _feeToken) {
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole,
+        address _controller,
+        address _feeToken
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {
         controller = _controller;
         tokenAddress = _feeToken;
     }
@@ -38,6 +50,7 @@ abstract contract ProxyAIRouter is Ownable(msg.sender) {
         // Commit the maximum fee for this request
         feeTank[msg.sender] -= maxFee;
 
+        // send cross chain message to generate key
         bytes32 idempotencyKey = Controller(controller).generateKey(
             address(this),
             requestHash,

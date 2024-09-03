@@ -17,6 +17,7 @@ interface IERC20 {
 }
 
 contract Controller {
+    uint256 constant GAS_LIMIT = 250_000;
     enum OperationType {
         Low,
         Medium,

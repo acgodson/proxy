@@ -1,0 +1,12 @@
+.DS_Store
+.vscode
+
+smart-contracts/contracts/artifacts
+smart-contracts/contracts/.deps
+smart-contracts/contracts/.states
+smart-contracts/contracts/.prettierrc.json
+smart-contracts/ignition
+smart-contracts/test
+smart-contracts/package-lock.json
+
+v0.1.0.zip
