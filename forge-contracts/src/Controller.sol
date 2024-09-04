@@ -4,10 +4,8 @@ pragma solidity ^0.8.24;
 import "wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
 import "wormhole-solidity-sdk/src/interfaces/IWormholeReceiver.sol";
 import "./ControllerVault.sol";
-import "forge-std/console.sol";
 
 contract Controller is IWormholeReceiver {
-    
     uint256 public expirationPeriod = 1 days;
     IWormholeRelayer public immutable wormholeRelayer;
     ControllerVault public vault;
@@ -128,7 +126,6 @@ contract Controller is IWormholeReceiver {
     ) external {
         require(msg.sender == address(vault), "Only vault can submit receipt");
         IdempotencyData storage data = idempotencyKeys[idempotencyKey];
-        console.log("submitting receipt now");
         require(!data.processed, "Key already processed");
         require(block.timestamp <= data.expirationTime, "Key expired");
 

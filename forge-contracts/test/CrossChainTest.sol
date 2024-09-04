@@ -194,11 +194,11 @@ contract CrossChainTest is WormholeRelayerBasicTest {
             "Final stored key does not match expected key"
         );
 
-        // assertTrue(isProcessed, "Key should be marked as processed");
-        // assertTrue(
-        //     expired > block.timestamp,
-        //     "Expiration time should be in the future"
-        // );
+        assertTrue(isProcessed, "Key should be marked as processed");
+        assertTrue(
+            expired > block.timestamp,
+            "Expiration time should be in the future"
+        );
 
         console.log("Test completed");
     }

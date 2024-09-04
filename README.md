@@ -1,6 +1,15 @@
 # ProxyAI (working title)
 
+
+give me a readme adjustments from the cross compatibility section, help me describe how our contracts use wormhole relayer SDK and co
+
+
+# wormhole proxy 
+
+
 A decentralized middleware that allows users to securely share, access, and pay for AI services like GPT, using tokenized credits across multiple blockchain network.
+
+
 
 ### **Problem Summary**
 
@@ -35,3 +44,16 @@ Decentralized middleware that allows developers to securely share, access, and p
    - Customizable contract deployed by users.
    - Uses the `ProxyAIRouter` to interact with the `Controller`.
    - Allows users/developers to implement custom logic around key generation and receipt handling.
+
+
+
+## Testing 
+
+```bash
+cd forge-contracts
+npm install
+`
+
+```bash
+
+```

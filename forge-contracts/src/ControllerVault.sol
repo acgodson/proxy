@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 import "wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
 import "wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 import "./Controller.sol";
-import "forge-std/console.sol";
+// import "forge-std/console.sol";
 
 contract ControllerVault is TokenReceiver {
     address public controller;
@@ -36,9 +36,16 @@ contract ControllerVault is TokenReceiver {
         (
             address depositorRouter,
             bytes32 idempotencyKey,
-            ,
+            address tokenAddress,
             uint256 usedTokens
         ) = abi.decode(payload, (address, bytes32, address, uint256));
+
+        // console.log("ControllerVault: Received payload");
+        // console.log("Depositor Router:", depositorRouter);
+        // console.log("Idempotency Key:");
+        // console.logBytes32(idempotencyKey);
+        // console.log("Token Address:", tokenAddress);
+        // console.log("Used Tokens:", usedTokens);
 
         // Process the received token
         address token = receivedTokens[0].tokenAddress;
@@ -50,4 +57,10 @@ contract ControllerVault is TokenReceiver {
         Controller(controller).submitReceipt(idempotencyKey, token, usedTokens);
         routerDeposits[depositorRouter][token] += amount;
     }
+
+    event TokensWithdrawn(
+        address indexed router,
+        address indexed token,
+        uint256 amount
+    );
 }

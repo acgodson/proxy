@@ -5,7 +5,6 @@ import "wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
 import "wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 import "wormhole-solidity-sdk/src/interfaces/IWETH.sol";
 import "openzeppelin-contracts/contracts/access/Ownable.sol";
-import "forge-std/console.sol";
 
 abstract contract ProxyAIRouter is Ownable, TokenSender {
     uint256 constant GAS_LIMIT = 250_000;
@@ -161,11 +160,6 @@ abstract contract ProxyAIRouter is Ownable, TokenSender {
             refund = uint256(maxFee) - usedTokens;
             feeTank[msg.sender] += refund;
         }
-
-        // Add this logging
-        console.log("Sending tokens to vault. Amount:", usedTokens);
-        console.log("Token address:", address(token));
-        console.log("Controller Vault address:", controllerVault);
 
         // Combine vault and controller payloads
         bytes memory combinedPayload = abi.encode(
