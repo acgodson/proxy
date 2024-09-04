@@ -21,7 +21,11 @@ import {
   CustomRouter__factory,
   ERC20Mock__factory,
 } from "./ethers-contracts";
-import { waitForDelivery, chainIdToName, DeliveryStatus } from "./wormhole-utils";
+import {
+  waitForDelivery,
+  chainIdToName,
+  DeliveryStatus,
+} from "./wormhole-utils";
 
 // Nonce Manager class
 class NonceManager {
@@ -224,8 +228,11 @@ async function main() {
 
   // Wait for the message to be delivered
   console.log("Waiting for message delivery...");
-  const deliveryResult = await waitForDelivery(chainIdToName(sourceChain), generateKeyTx.hash);
-  
+  const deliveryResult = await waitForDelivery(
+    chainIdToName(sourceChain),
+    generateKeyTx.hash
+  );
+
   // Retrieve the generated key from the controller
   const expectedIdempotencyKey = await controllerTarget.requestHashToKey(
     requestHash
@@ -261,7 +268,6 @@ async function main() {
   console.log("Waiting for receipt processing...");
   await waitForDelivery(chainIdToName(sourceChain), submitReceiptTx.hash);
 
-return
   // Verify receipt submission and token transfer
   console.log("Verifying receipt submission and token transfer...");
   const tokenBridgeTarget = new ethers.Contract(

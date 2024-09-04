@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "npm install; forge build; forge remappings > remappings.txt; npm run typechain",
     "main": "ts-node ./ts-scripts/main.ts",
-    "generate-types": "typechain --target ethers-v5 --out-dir ts-scripts/ethers-contracts './out/{Controller,ControllerVault,CustomRouter,ERC20Mock}.sol/*.json'"
+    "typechain": "typechain --target ethers-v5 --out-dir ts-scripts/ethers-contracts './out/{Controller,ControllerVault,CustomRouter,ERC20Mock}.sol/*.json'"
   },
   "keywords": [],
   "author": "",

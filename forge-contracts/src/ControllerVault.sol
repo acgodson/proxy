@@ -36,7 +36,7 @@ contract ControllerVault is TokenReceiver {
         (
             address depositorRouter,
             bytes32 idempotencyKey,
-            address tokenAddress,
+            ,
             uint256 usedTokens
         ) = abi.decode(payload, (address, bytes32, address, uint256));
 

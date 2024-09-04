@@ -31,7 +31,7 @@ export const waitForDelivery = async (
     waitCount += 1;
     const res = await getStatus(sourceChain, transactionHash);
     if (res.info !== pastStatusString) {
-      console.log(res.info);
+      //   console.log(res.info);
       pastStatusString = res.info;
     }
     if (res.status !== DeliveryStatus.PendingDelivery) break;
