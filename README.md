@@ -1,4 +1,4 @@
-# ProxyAI (working title)
+# ProxyAI
 
 A decentralized middleware that allows users to securely share, access, and pay for AI services like GPT, using tokenized credits across multiple blockchain network.
 
@@ -6,11 +6,11 @@ A decentralized middleware that allows users to securely share, access, and pay 
 
 Included in this repository is:
 
-- Solidity [Contracts]()
-- Forge local [testing]()
-- Testnet Testing [Scripts]()
+- Solidity [Contracts](forge-contracts/src)
+- Forge local [testing](forge-contracts/test/CrossChainTest.sol)
+- Testnet Testing [Scripts](forge-contracts/ts-scripts/main.ts)
 
-- Frontend [Proxy_ai]()
+- Frontend [Proxy_ai](https://github.com/acgodson/pro)
 
 ### Testing locally
 
@@ -31,8 +31,8 @@ forge test
 
 You will need a wallet with at least 0.5 Testnet AVAX and 0.1 Testnet CELO.
 
-- sourceChain:[ Obtain testnet AVAX here ]()
-- targetChain: [Obtain testnet CELO here]()
+- sourceChain: Obtain testnet AVAX [here](http://faucets.chain.link)
+- targetChain: Obtain testnet CELO [here](https://faucet.celo.org/alfajores)
 
 create and update .env file
 
@@ -52,10 +52,6 @@ npm run main
 
 ## ProxyAI Service
 
-# ProxyAI Flow Diagram
-
-## ProxyAI Flow Diagram
-
 ![alt text](forge-contracts/image3.png)
 
 | **Process**                                                      | **Description**                                                                                                                                               |
@@ -71,3 +67,17 @@ npm run main
 |                                                                  | - The `Controller` updates the idempotency data as processed, finalizing the cycle.                                                                           |
 
 ## Smart Contracts
+
+| **Smart Contract**           | **Description**                                                                                                                         |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Controller Contract**      | - Manages idempotency key generation and token usage.                                                                                   |
+|                              | - Only authorized `ProxyAIRouter` contracts can interact with it.                                                                       |
+|                              | - Handles the registration of routers and cross-chain message receipt.                                                                  |
+|                              | - Coordinates with the `ControllerVault` for after-request processing, including token transfers and receipt submissions.               |
+| **ProxyAIRouter Contract**   | - Entry point for cross-chain operations on each source chain.                                                                          |
+|                              | - Interacts with the `Controller` to generate idempotency keys for AI authorization requests and submits receipts for AI service usage. |
+|                              | - Manages gas fees and token transfers on behalf of users.                                                                              |
+| **CustomRouter Contract**    | - A customizable contract that users can deploy to add their own logic and extends the `ProxyAIRouter` interface.                       |
+|                              | - Allows developers to register as admins, deposit funds into a router's fee tanks, and initiate cross-chain requests for AI services.  |
+| **ControllerVault Contract** | - Acts as the receiving endpoint for receipt payloads and tokens from the router via the Wormhole Token Bridge.                         |
+|                              | - Interacts with the `Controller` to process incoming receipts.                                                                         |
