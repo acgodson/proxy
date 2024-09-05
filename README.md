@@ -10,7 +10,7 @@ Included in this repository is:
 - Forge local [testing](forge-contracts/test/CrossChainTest.sol)
 - Testnet Testing [Scripts](forge-contracts/ts-scripts/main.ts)
 
-- Frontend [Proxy_ai](https://github.com/acgodson/pro)
+- Live Frontend [Proxy_ai](https://github.com/acgodson/proxy_ai)
 
 ### Testing locally
 
